@@ -16,6 +16,21 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 
 // ---- Verwachte uitkomst: 6
 
+// maak een var aan die cumlaude studenten gaat storen
+let cumlaude = 0;
+
+// maak een loop die door de volledige grades gaat
+for (let i = 0; i < grades.length; i++) {
+    // Maak een IF om iedere 8 of hoger te ontdekken (>= 8)
+    if (grades[i] >= 8) {
+        // verhoog de cumlaude count bij 1
+        cumlaude++;
+    }
+}
+
+// zie het nieuwe aantal cumlaude terug in de log
+console.log("Aantal studenten die er dit blok cum laude zijn afgestudeerd:", cumlaude);
+
 
 /*  1b: Omschrijven tot een herbruikbare functie   */
 // Schrijf een functie genaamd cumLaude, die een array van cijfers verwacht (zoals grades) en het aantal Cum laude studenten teruggeeft. Gebruik hiervoor jouw antwoord van 1a.
@@ -27,6 +42,29 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // cumLaude([6, 4, 5]) geeft 0
 // cumLaude([8, 9, 4, 6, 10]) geeft 3
 
+
+function cumLaude(gradesArray) {
+    let cumlaude = 0;
+
+    // maak een loop die door de volledige grades gaat
+    for (let i = 0; i < gradesArray.length; i++) {
+        // Maak een IF om iedere 8 of hoger te ontdekken (>= 8)
+        if (gradesArray[i] >= 8) {
+            // verhoog de cumlaude count bij 1
+            cumlaude++;
+        }
+    }
+
+    // de return
+    return cumlaude;
+}
+
+// De oprachten ingeoerd in de formule
+console.log("Aantal studenten die er dit blok cum laude zijn afgestudeerd in het orginele grades:", cumLaude(grades));
+
+console.log("aantal studenten met cumlaude in een array van [6, 4, 5]:", cumLaude([6, 4, 5]));
+
+console.log("aantal studenten met cumlaude in een array van [8, 9, 4, 6, 10]:", cumLaude([8, 9, 4, 6, 10]));
 
 
 
@@ -42,6 +80,20 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 
 // ---- Verwachte uitkomst: 6.642857142857143
 
+// maak een var aan die het gemiddelde gaat storen
+let Allgrades = 0;
+
+// loop door de grades
+for (let i = 0; i < grades.length; i++) {
+    // tell de grade op in AllGrades
+    Allgrades += grades[i];
+}
+
+// Het gemmilde storen in een Average. Het gemiddelde is de Allgrades met alle grades samengevoegd, delen door de hele lengte van de grade array length
+const average = Allgrades / grades.length;
+
+// check de uitkomst van average
+console.log("Het gemmiddelde is", average);
 
 /* 2b: Omschrijven tot een herbruikbare functie */
 // Schrijf een functie genaamd averageGrade, die een array van cijfers verwacht (zoals grades) en het gemiddelde cijfer teruggeeft. Gebruik hiervoor jouw antwoord van 2a.
@@ -54,12 +106,60 @@ const grades = [9, 8, 5, 7, 7, 4, 9, 8, 8, 3, 6, 8, 5, 6];
 // averageGrade([8, 9, 4, 6, 10]) geeft 7.4
 
 
+function averageWrap(gradesArray) {
+
+    // maak een var aan die het gemiddelde gaat storen
+    let Allgrades = 0;
+
+// loop door de grades, MOET IN ARRAY
+    for (let i = 0; i < gradesArray.length; i++) {
+        // tell de grade op in AllGrades, MOET IN ARRAY
+        Allgrades += gradesArray[i];
+    }
+
+// Het gemmilde storen in een Average. Het gemiddelde is de Allgrades met alle grades samengevoegd, delen door de hele lengte van de grade array length
+    const average = Allgrades / gradesArray.length;
+
+
+    // de return
+    return average;
+}
+
+// Test logs
+console.log("Het gemmiddelde is", averageWrap(grades));
+
+console.log("Het gemmiddelde van de volgende array [6, 4, 5] is:", averageWrap([6, 4, 5]));
+
+console.log("Het gemmiddelde van de volgende array [8, 9, 4, 6, 10] is:", averageWrap([8, 9, 4, 6, 10]));
+
+
 /* 2c: Afronden op twee decimalen */
 // Zorg ervoor dat het gemiddelde cijfer dat wordt teruggegeven uit de functie netjes wordt afgerond op twee decimalen.
 // Tip: Google is your best friend!
 
+function averageWrap(gradesArray) {
 
+    // maak een var aan die het gemiddelde gaat storen
+    let Allgrades = 0;
 
+// loop door de grades, MOET IN ARRAY
+    for (let i = 0; i < gradesArray.length; i++) {
+        // tell de grade op in AllGrades, MOET IN ARRAY
+        Allgrades += gradesArray[i];
+    }
+
+// Het gemmilde storen in een Average. Het gemiddelde is de Allgrades met alle grades samengevoegd, delen door de hele lengte van de grade array length
+    const average = Allgrades / gradesArray.length;
+
+    // afronden 2 cijfers na komma
+    const roundedAverage = average.toFixed(2);
+
+    // de return
+    return roundedAverage;
+}
+
+// Test logs
+console.log("Het gemiddelde is", averageWrap(grades));
 
 /* Bonusopdracht: hoogste cijfer */
 

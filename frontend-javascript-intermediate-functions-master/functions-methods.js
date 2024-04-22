@@ -9,6 +9,22 @@
 // getEmailDomain("t.mellink@novi.nl") geeft novi.nl
 // getEmailDomain("a.wiersma@outlook.com") geeft outlook.com
 
+// Maak de functie getEmailDomain
+function getEmailDomain(email) {
+    // Zoek de @ via een indexof in de String Methoden
+    const atIndex = email.indexOf('@');
+
+    // Kopieer nu een referentieloze kopie van het deel na deze gevonden @
+    const domain = email.slice(atIndex + 1);
+
+    // Return the domain name
+    return domain;
+}
+
+// Test logs
+console.log(getEmailDomain("n.eeken@novi-education.nl"));
+console.log(getEmailDomain("t.mellink@novi.nl"));
+console.log(getEmailDomain("a.wiersma@outlook.com"));
 
 
 
@@ -19,6 +35,31 @@
 // typeOfEmail("t.mellink@novi.nl") geeft geeft "Medewerker"
 // typeOfEmail("novi.nlaapjesk@outlook.com") geeft geeft "Extern" <-- deze moet het ook doen!
 // typeOfEmail("a.wiersma@outlook.com") geeft "Extern"
+
+
+// Maak de functie typeofEmail
+function typeOfEmail(email) {
+    // Roep eerder geschreven functie aan voor hergebruik
+    const domain = getEmailDomain(email);
+
+    // Als novi-education, dan Student
+    if (domain.includes("novi-education.nl")) {
+        return "Student";
+
+        // Als novi, dan Medewerker
+    } else if (domain.includes("novi.nl")) {
+        return "Medewerker";
+        // Als extern (all het andere), dan extern domein
+    } else {
+        return "Extern";
+    }
+}
+
+// Test cases
+console.log(typeOfEmail("n.eeken@novi-education.nl"));
+console.log(typeOfEmail("t.mellink@novi.nl"));
+console.log(typeOfEmail("novi.nlaapjesk@outlook.com"));
+console.log(typeOfEmail("a.wiersma@outlook.com"));
 
 
 
@@ -34,3 +75,31 @@
 // checkEmailValidity("n.eekenanovi.nl") geeft false - want geen @
 // checkEmailValidity("n.eeken@novinl.") geeft false - want de punt mag niet als laatst
 // checkEmailValidity("tessmellink@novi,nl") geeft false - want er staat een komma in
+
+function checkEmailValidity(email) {
+    // Check voor het @ symbool: is deze NIET aanwezig? Return FALSE
+    if (!email.includes('@')) {
+        return false;
+    }
+
+    // Check voor het , symbool , is deze WEL aanwezig? return False
+    if (email.includes(',')) {
+        return false;
+    }
+
+    // Check of het mailadres met een punt eindigt. is deze aanwezig op het einde? Return False
+    if (email.endsWith('.')) {
+        return false;
+    }
+
+    // Als niks getriggered is, moet er niks returned zijn. dit betekent dat alles goed is, dus true
+    return true;
+}
+
+
+// Test logs
+console.log(checkEmailValidity("n.eeken@novi.nl"));
+console.log(checkEmailValidity("tessmellink@novi.nl"));
+console.log(checkEmailValidity("n.eekenanovi.nl"));
+console.log(checkEmailValidity("n.eeken@novinl."));
+console.log(checkEmailValidity("tessmellink@novi,nl"));
